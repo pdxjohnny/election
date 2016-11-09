@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"math"
 	"net/http"
@@ -39,7 +40,7 @@ type State struct {
 
 type Candidate struct {
 	CandidateID   string  `json:"candidateid"`
-	Electtotal    int     `json:"electtotal"`
+	ElectTotal    int     `json:"electtotal"`
 	VoteTotal     int     `json:"vote_total"`
 	ElectWon      int     `json:"electwon"`
 	VotePercent   float64 `json:"vote_percent"`
@@ -98,6 +99,26 @@ func main() {
 
 		// Add all the canidates
 		for _, c := range p.US.Candidates {
+			// Electoral
+			g := termui.NewGauge()
+			if c.ElectWon > 0 {
+				g.Percent = int((float64(c.ElectWon) / float64(c.ElectTotal)) * 100)
+			} else {
+				continue
+			}
+			g.Width = Width
+			g.Height = Height
+			g.Y = Y
+			g.BorderLabel = fmt.Sprintf("%s - Electoral - %d", c.Name, c.ElectWon)
+			g.BarColor = PartyColor[c.Party]
+			g.BorderFg = termui.ColorWhite
+			g.BorderLabelFg = termui.ColorCyan
+			Y += Height
+			b = append(b, g)
+		}
+
+		for _, c := range p.US.Candidates {
+			// Popular
 			g := termui.NewGauge()
 			g.Percent = int(math.Ceil(c.VotePercent))
 			g.Width = Width

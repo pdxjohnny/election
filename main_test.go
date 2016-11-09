@@ -24,6 +24,7 @@ func TestGetPrezResults(t *testing.T) {
 		g.BarColor = PartyColor[c.Party]
 		g.BorderFg = termui.ColorWhite
 		g.BorderLabelFg = termui.ColorCyan
+		log.Println(c)
 		log.Println(g)
 		b = append(b, g)
 	}
