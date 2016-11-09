@@ -18,10 +18,10 @@ deploy:
     - election_linux_amd64
     - election_linux_arm
     - election_freebsd_386
-    - election_windows_amd64
+    - election_windows_amd64.exe
     - election_openbsd_386
     - election_openbsd_amd64
-    - election_windows_386
+    - election_windows_386.exe
     - election_netbsd_386
     - election_freebsd_arm
     - election_netbsd_amd64

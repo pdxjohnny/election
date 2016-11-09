@@ -3,7 +3,9 @@ package main
 import (
 	"encoding/json"
 	"log"
+	"math"
 	"net/http"
+	"time"
 
 	"github.com/gizak/termui"
 )
@@ -66,8 +68,6 @@ func GetPrezResults() (error, *PrezResults) {
 }
 
 func main() {
-	Y := 0
-
 	err := termui.Init()
 	if err != nil {
 		log.Fatal(err)
@@ -75,6 +75,7 @@ func main() {
 	defer termui.Close()
 
 	draw := func() {
+		Y := 0
 		err, p := GetPrezResults()
 		if err != nil {
 			log.Fatal(err)
@@ -84,7 +85,7 @@ func main() {
 
 		// Show how far the election is from done
 		g := termui.NewGauge()
-		g.Percent = int(p.US.Reporting)
+		g.Percent = int(math.Ceil(p.US.Reporting))
 		g.Width = Width
 		g.Height = Height
 		g.Y = Y
@@ -98,7 +99,7 @@ func main() {
 		// Add all the canidates
 		for _, c := range p.US.Candidates {
 			g := termui.NewGauge()
-			g.Percent = int(c.VotePercent)
+			g.Percent = int(math.Ceil(c.VotePercent))
 			g.Width = Width
 			g.Height = Height
 			g.Y = Y
@@ -118,9 +119,13 @@ func main() {
 	termui.Handle("/sys/kbd/q", func(e termui.Event) {
 		termui.StopLoop()
 	})
-	termui.Handle("/timer/2s", func(e termui.Event) {
-		draw()
-	})
+
+	go func() {
+		c := time.Tick(10 * time.Second)
+		for range c {
+			draw()
+		}
+	}()
 
 	termui.Loop()
 }
