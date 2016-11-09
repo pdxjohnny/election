@@ -90,7 +90,7 @@ func main() {
 		g.Height = Height
 		g.Y = Y
 		g.BorderLabel = p.US.OfficeName
-		g.BarColor = termui.ColorWhite
+		g.BarColor = termui.ColorGreen
 		g.BorderFg = termui.ColorWhite
 		g.BorderLabelFg = termui.ColorCyan
 		Y += Height
