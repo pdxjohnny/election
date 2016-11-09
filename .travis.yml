@@ -10,21 +10,21 @@ deploy:
   api_key:
     secure: s7RQhZ+v2FZ9vNhVon5r1kafahWKBRm9zri4B2a03ZzInWtpTivdjVEGGowU+6CQYranliBpCxroaiXLuqAukGdi6HTR178SbPNw5In+cdAPo5u2eUvMiYgDNraXchklDWRzmpP+Pxle8TC7BPEcV0/mVsXHF6iwgWHhWRtOoXXl5SGsyrkMCytml1ZhW/IIfmF6zjKuFGq+tnVE6QxPTrb7MrInYXP8OgVnOImB5daq0l2YV+FAyJyaTD2z5lnXlQYaE68xBCFEYvVdE/v6k8or/Xzi02yffyGikdhUuwxpEWLXJXl7gY8KBP9T+/iWbEbTFHTzls6k2ur5PBTHvYJqUV+mqsZ0Ko+3xmnRnWapXecKBawdAlsJJblpO9ItAOKGxjF3BoQh9GWmwrLt+wvHloclarFjErvpOEOm9SFrWbY5g50JgCWEP1w5ZMd71JtiuOR6Wtk9ovkS8QL0Pe+i1pWywQNduflTeCWqU4BfRaLZg1AOSjSZcvh+tPuu45koxoCdiP0v5XaewTooN9Q7MAqCWa9z9CndYS15FGMN+J4II5sRv+JkpuJEKhqDJE0oa8/c3jkXBj1bVqsA6Tuj20seLukDpbaciDEP8wqq2ZKXhfHKVWH9D+UJq803JHacL843lNZpFbrZPZXkSvJj9c7/PjiHpGvTrU4MfGI=
   file:
+    - election_netbsd_arm
+    - election_freebsd_amd64
     - election_darwin_386
     - election_darwin_amd64
     - election_linux_386
     - election_linux_amd64
     - election_linux_arm
     - election_freebsd_386
-    - election_freebsd_amd64
+    - election_windows_amd64
     - election_openbsd_386
     - election_openbsd_amd64
     - election_windows_386
-    - election_windows_amd64
-    - election_freebsd_arm
     - election_netbsd_386
+    - election_freebsd_arm
     - election_netbsd_amd64
-    - election_netbsd_arm
-    - election_plan9_386
   on:
     repo: pdxjohnny/election
+  skip_cleanup: true
